@@ -1,27 +1,38 @@
-# Dynamic General Equilibrium Model with AI Accumulation 
+# Dynamic General Equilibrium Model with AI Accumulation  
 
-## Introduction
-Hi! This is a very basic model to study the **impact of AI on the economy**, which can be parametred as a complement, substitute or something between to workers. For the moment, it only computes the steady state and not the dynamics.
+## Introduction  
 
-The model was presented for my major thesis at college, which originally was programmed in GNU Octave. My main goal was to show my computational and modelling skills, focusing overall in the macroeconomics field. In this repository, I uploaded the thesis document (in Spanish) for those who want to understand the model, although, as I stated before, there is not a huge complexity in this model, at least for those experimented with DGE models. 
+This is a basic economic model to study the **impact of AI on the economy**, where AI can be parameterized as a complement, substitute, or intermediate factor to labor. Currently, the model only computes the steady state and not transitional dynamics.
 
-In general, it is more a toy model than a usable model in the life of an economist, yet I find there is some value as it can be used to learn how to code this kind of models or to extent it to make it more powerful (below some possible extensions). However, being simple means that it is also simple to compute, meaning that almost any computer in the world should be able to run this model, even if it is extended as I was talking previously. 
+The model was developed for my undergraduate thesis and was originally programmed in GNU Octave. My primary goal was to demonstrate computational and macroeconomic modeling skills. The repository includes the thesis document (in Spanish) for those interested in the theoretical foundations, though the model's structure should be familiar to economists experienced with Dynamic General Equilibrium (DGE) models.
 
-## How to use it 
+While this is more of a toy model than a production-ready economic tool, it has educational value for:
+- Learning to code DGE models
+- Serving as a base for extensions
+- Running efficiently on any modern computer
 
-First, of course, import the repository to be able to run it. After that, you may want to change the parameters to see how the solution changes and make a static comparative exercise. To see what each parameter comes from, I highly recommend to read the document where it is included a full explanation of the model and the results obtained. Even those who don't speak Spanish may understand the equations behind it as they are pretty common in formulas from the economic literature. 
+## How to Use  
 
-## Licence 
+1. Clone the repository
+2. Run the model 
+3. Modify parameters to perform comparative static exercises
 
-## Extension suggestions 
+For full parameter explanations and model derivation, consult the included thesis document. The mathematical formulation uses standard economic notation that should be accessible regardless of Spanish proficiency.
 
-Now, here is a list of possible extensions to add to the program or the model in the future: 
+## License  
 
-- Dynamics of this model
-- Fiscal/Monetary policies
-- Growth
-- Calibration migration from MatLab to Python.  
+This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](LICENSE) file for details.  
 
-## Acknowledgments
 
-Special thanks to Professor Gonzalo Fernández de Córdoba Martos, an excellent professor of the faculty. He was my thesis tutor and who motivated me to do this project.
+## Extension Suggestions  
+
+Potential future improvements include:  
+- Adding transitional dynamics  
+- Incorporating fiscal/monetary policy elements  
+- Extending to a growth model framework  
+- Adding calibration procedures  (already done in MatLab, see the PDF file)
+- User interface for better interaction
+
+## Acknowledgments  
+
+Special thanks to Professor Gonzalo Fernández de Córdoba Martos for his guidance as thesis advisor and for inspiring this project.  
