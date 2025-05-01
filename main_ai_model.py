@@ -43,7 +43,10 @@ DESCRIPTION
 
 # Importing libraries 
 import numpy as np 
+import matplotlib.pyplot as plt
 from scipy.optimize import root  
+
+# ==================== COMPUTING BASE EQUILIBRIUM ====================
 
 # Parameters of the model
 beta = 0.99 
@@ -116,6 +119,7 @@ mu = kappa/(theta * D * La_sol**phi * Ka_sol**(theta-1))
 psi = mu * phi * D * Ka_sol**theta * La_sol**(phi-1)  
 
 # Printing results 
+print(" ")
 print("Capital destined to AI industry: ",Ka_sol) 
 print("Capital destined to Final Good industry: ",Kf_sol) 
 print("Labor destined to Final Good industry: ", Lf) 
@@ -126,3 +130,55 @@ print("AI returns: ", Ra)
 print("Wages level: ",W) 
 print("Level of Capital: ",K) 
 print("Level of Consumption: ",C) 
+
+# ==================== COMPUTING NEW EQUILIBRIUM ====================
+
+# Changing Parameters
+beta = 0.98 #Changed as sample 
+
+parameters_2 = np.array([beta,delta_a,delta_k,D,phi,theta,F,alpha,gamma,sigma,Lbar])
+
+# Computing the solution for Ka, La and Kf
+solution = root(ss,ss_0,args=(parameters_2,)) 
+Ka_sol_2, La_sol_2, Kf_sol_2 = solution.x 
+
+# Computing the rest of the variables 
+Lf_2 = Lbar - La_sol_2 
+A_2 = D * La_sol_2**phi * Ka_sol_2**theta / delta_a 
+Q_2 = (1 - sigma) * Lf_2**(-gamma) + sigma * A_2**(-gamma) 
+Rk_2 = F * (1 - alpha) * Kf_sol_2**(-alpha) * Q_2**(-alpha / gamma) 
+W_2 = F * alpha * (1 - sigma) * Kf_sol_2**(1 - alpha) * Q_2**(-alpha / gamma - 1) * Lf_2**(-gamma - 1) 
+Ra_2 = F * alpha * sigma * Kf_sol_2**(1 - alpha) * Q_2**(-alpha / gamma - 1) * A_2**(-gamma - 1) 
+K_2 = Ka_sol_2 + Kf_sol_2 
+C_2 = F * Kf_sol_2**(1 - alpha) * ((1 - sigma) * Lf_2**(-gamma) + sigma * A_2**(-gamma))**(-alpha / gamma) - delta_k * K_2
+lambda_ss_2 = 1 / C_2 
+kappa_2 = lambda_ss_2 / beta - lambda_ss_2 * (1 - delta_k) 
+mu_2 = kappa_2 / (theta * D * La_sol_2**phi * Ka_sol_2**(theta - 1)) 
+psi_2 = mu_2 * phi * D * Ka_sol_2**theta * La_sol_2**(phi - 1)   
+
+# Printing New Equilibrium Results  
+print(" ")
+print("================================================") 
+print(" ")
+print("New Capital destined to AI industry: ", Ka_sol_2) 
+print("New Capital destined to Final Good industry: ", Kf_sol_2) 
+print("New Labor destined to Final Good industry: ", Lf_2) 
+print("New Labor destined to AI industry: ", La_sol_2) 
+print("New Level of AI: ", A_2) 
+print("New Capital returns: ", Rk_2) 
+print("New AI returns: ", Ra_2) 
+print("New Wages level: ", W_2) 
+print("New Level of Capital: ", K_2) 
+print("New Level of Consumption: ", C_2)  
+
+# ==================== PLOTTING ====================
+
+names = ["Base", "New"]  
+levels_Ka = [Ka_sol, Ka_sol_2] 
+
+fig, ax = plt.subplots()
+ax.stem(names, levels_Ka)
+ax.set_title("Capital in AI Industry: Base vs. New") 
+ax.set_ylabel("Capital Level")                       
+plt.show()
+
